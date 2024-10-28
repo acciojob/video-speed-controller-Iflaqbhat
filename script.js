@@ -1,5 +1,9 @@
 const video = document.getElementById("video");
+video.classList.add("player__video"); // Add the class for Cypress compatibility
+
 const playerButton = document.getElementById("player-button");
+playerButton.classList.add("toggle"); // Add the class for Cypress compatibility
+
 const progressFilled = document.querySelector(".progress__filled");
 const volumeInput = document.getElementById("volume");
 const playbackSpeedInput = document.getElementById("playbackSpeed");
@@ -42,3 +46,4 @@ rewindButton.addEventListener("click", () => {
 skipButton.addEventListener("click", () => {
   video.currentTime = Math.min(video.duration, video.currentTime + 25);
 });
+
