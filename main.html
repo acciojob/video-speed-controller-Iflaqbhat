@@ -2,94 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Video Speed Scrubber</title>
+  <title>Video Speed Controller</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
   <div class="video-player">
-    <video id="video" class="flex" width="765" height="430" src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
+    <video id="video" width="765" height="430" src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
     <div class="controls">
       <div class="progress">
-        <div class="progress-filled"></div>
+        <div class="progress__filled"></div>
       </div>
       <button id="player-button">►</button>
-      <input
-        type="range"
-        id="volume"
-        min="0"
-        max="1"
-        step="0.01"
-        value="1"
-      />
-      <input
-        type="number"
-        id="playbackSpeed"
-        value="1"
-        step="0.1"
-        min="0.5"
-        max="3"
-      />
+      <input type="range" id="volume" min="0" max="1" step="0.01" value="1" />
+      <input type="number" id="playbackSpeed" value="1" step="0.1" min="0.5" max="3" />
       <button id="rewind">« 10s</button>
       <button id="skip">25s »</button>
     </div>
   </div>
-
-  <script>
-    const video = document.getElementById("video");
-    const playerButton = document.getElementById("player-button");
-    const progressFilled = document.querySelector(".progress-filled");
-    const volumeInput = document.getElementById("volume");
-    const playbackSpeedInput = document.getElementById("playbackSpeed");
-    const rewindButton = document.getElementById("rewind");
-    const skipButton = document.getElementById("skip");
-
-	  playerButton.addEventListener("click", () => {
-  waitForElement(".toggle", () => {
-    if (video.paused) {
-      video.play();
-      playerButton.textContent = "❚ ❚"; 
-    } else {
-      video.pause();
-      playerButton.textContent = "►"; 
-    }
-  });
-});
-
-	  
-
-    playerButton.addEventListener("click", () => {
-      if (video.paused) {
-        video.play();
-        playerButton.textContent = "❚ ❚"; 
-      } else {
-        video.pause();
-        playerButton.textContent = "►"; 
-      }
-    });
-
-    video.addEventListener("timeupdate", () => {
-      const percent = (video.currentTime / video.duration) * 100;
-      progressFilled.style.width = `${percent}%`;
-    });
-
-    volumeInput.addEventListener("input", (e) => {
-      video.volume = e.target.value;
-    });
-
-    playbackSpeedInput.addEventListener("input", (e) => {
-      video.playbackRate = e.target.value;
-    });
-
-    rewindButton.addEventListener("click", () => {
-      video.currentTime = Math.max(0, video.currentTime - 10);
-    });
-
-    skipButton.addEventListener("click", () => {
-      video.currentTime = Math.min(video.duration, video.currentTime + 25);
-    });
-  </script>
+  <script src="scripts.js"></script>
 </body>
 </html>
 
-</html>
