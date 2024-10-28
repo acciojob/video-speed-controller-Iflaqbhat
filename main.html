@@ -44,6 +44,20 @@
     const rewindButton = document.getElementById("rewind");
     const skipButton = document.getElementById("skip");
 
+	  playerButton.addEventListener("click", () => {
+  waitForElement(".toggle", () => {
+    if (video.paused) {
+      video.play();
+      playerButton.textContent = "❚ ❚"; 
+    } else {
+      video.pause();
+      playerButton.textContent = "►"; 
+    }
+  });
+});
+
+	  
+
     playerButton.addEventListener("click", () => {
       if (video.paused) {
         video.play();
